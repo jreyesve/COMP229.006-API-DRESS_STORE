@@ -17,6 +17,7 @@ module.exports.create = async function (req, res, next) {
     }
 }
 
+
 exports.list = async function (req, res, next) {
     try {
         let list = await UserModel.find({}, '-password');
