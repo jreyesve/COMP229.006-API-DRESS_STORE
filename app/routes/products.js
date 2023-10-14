@@ -6,6 +6,12 @@ let productController = require('../controllers/products');
 /*Search ALL */
 router.get('', productController.list);
 
+/*Create NEW PRODUCT */
+router.post('', productController.create);
+
+/*Delete ALL PRODUCTS */
+router.delete('', productController.remove);
+
 /*Search By ALL PUBLISHED */
 router.get('/published', productController.published);
 
@@ -15,13 +21,10 @@ router.get('/name', productController.productByName, productController.readName)
 /*Search By ID */
 router.get('/:id', productController.productByID, productController.read);
 
-/*Create NEW PRODUCT */
-router.post('', productController.create);
-
 /*Update PRODUCT BY ID*/
 router.put('/:id', productController.update);
 
-/*Delete ALL PRODUCTS */
-router.delete('', productController.remove);
+/*Delete PRODUCT BY ID*/
+router.delete('/:id', productController.removeByID);
 
 module.exports = router;

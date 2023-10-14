@@ -97,7 +97,7 @@ exports.update = async (req, res, next) => {
 }
 
 /*Delete Product BY ID */
-module.exports.remove = async (req, res, next) => {
+module.exports.removeByID = async (req, res, next) => {
      try {
        let productId = req.params.id;
        let result = await ProductModel.deleteOne({ _id: productId });
@@ -112,7 +112,7 @@ module.exports.remove = async (req, res, next) => {
        }
        else {
          // Express will catch this on its own.
-         throw new Error('User not deleted. Are you sure it exists?')
+         throw new Error('Product not deleted. Are you sure it exists?')
        }
      } catch (error) {
        console.log(error);
