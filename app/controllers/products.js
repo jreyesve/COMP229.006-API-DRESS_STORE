@@ -28,6 +28,16 @@ exports.list = async function (req, res, next) {
     }
 }
 
+/*Search ALL PUBLISHED Products */
+exports.published = async function (req, res, next) {
+  try {
+      let list1 = await ProductModel.find({published: true}, '-password');
+      res.json(list1);
+  } catch (error) {
+      next(error);
+  }
+}
+
 /*Search Product BY ID */
 exports.productByID = async function (req, res, next) {
     try {
@@ -42,6 +52,22 @@ exports.productByID = async function (req, res, next) {
 
 exports.read = function (req, res) {
     res.json(req.user);
+};
+
+/*Search Product BY NAME = KW */
+exports.productByName = async function (req, res, next) {
+  try {
+      let characters = req.params.name;
+      req.user = await ProductModel.findOne({name: { $regex: "(?-i)"+characters } });
+      next();
+  } catch (error) {
+      console.log(error);
+      next(error);
+  }
+};
+
+exports.readName = function (req, res) {
+  res.json(req.user);
 };
 
 /*Update Product BY ID */
